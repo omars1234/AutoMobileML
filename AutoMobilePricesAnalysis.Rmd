@@ -1,0 +1,570 @@
+---
+title: "Auto Mobile price Analysis Project - EDA In Depth"
+author: 'author : Omar Soub'
+date: "date : 23-05/2024"
+output:
+  html_document:
+    toc: yes
+    toc_float:
+      collapsed: true
+    
+    
+---
+
+
+
+# *Introduction* 
+
+* *On this chapter ,we will use R-Programming Language in order to conduct inferential analysis to analyse the data as much as we can to help decision making*
+
+----------------------------------------------
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(GGally)
+library(lubridate)
+library(skimr)
+library(readxl)
+library(janitor)
+library(gridExtra)
+library(flextable)
+library(knitr)
+library(gridExtra)
+library(patchwork)
+library(dlookr)
+library(rstatix)
+library(ggstatsplot)
+library(effectsize)
+library(FSA)
+library(ISLR)
+library(repr)
+library(gtsummary)
+library(corrplot)
+```
+
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+df<-read.csv("C:/Users/Omar/Desktop/Omar_Files/Python_Analysis/AutoMobile_Data_Analysis_2/new_cleaned_df.csv")
+```
+
+# *Data Set and Data types view*
+
+----------------------------------------------
+
+## *Data Set (1st five rows) :*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df %>% head() %>% kable()
+```
+
+----------------------------------------------
+
+## *Data types and some details using glimps function*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df %>% glimpse()
+```
+
+----------------------------------------------
+
+* *convert variables from character data type into factor*
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)], 
+                                                           as.factor)
+```
+
+
+```{r message=FALSE, warning=FALSE}
+
+# df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)],as.factor)                                
+```
+
+----------------------------------------------
+
+## *Data types and some details using skim function*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df %>% skim()
+```
+
+-----------------------------------------------
+
+###  *Define categorical variables*  
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+categorical_data<-df %>% select_if(is.factor)
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+categorical_data %>% colnames()
+
+```
+
+-----------------------------------------------
+
+###  *Define numerical variables*  
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+
+numerical_data<-df %>% select_if(is.numeric) 
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+numerical_data %>% colnames()
+```
+
+
+-----------------------------------------------
+
+# *Categorical variables visualization*
+
+
+```{r echo=FALSE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+( 
+  ggplot(df, aes(y=body_style, fill=body_style))
+    + geom_bar()
+    + geom_text(
+        aes(label=after_stat(count)), stat="count", nudge_y=0.125, va="bottom")+theme(legend.position = "none")
+)+labs(x="",y="",title="Count of body_style variable")+
+  
+( 
+  ggplot(df, aes(y=fuel_system, fill=fuel_system))
+    + geom_bar()
+    + geom_text(
+        aes(label=after_stat(count)), stat="count", nudge_y=0.125, va="bottom")+theme(legend.position = "none")
+)+labs(x="",y="",title="Count of fuel_system variable")+
+( 
+  ggplot(df, aes(y=num_of_cylinders, fill=num_of_cylinders))
+    + geom_bar()
+    + geom_text(
+        aes(label=after_stat(count)), stat="count", nudge_y=0.125, va="bottom")+theme(legend.position = "none")
+)+labs(x="",y="",title="Count of num_of_cylinders variable")
+```
+  
+
+
+  
+
+```{r echo=FALSE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+( 
+  ggplot(df, aes(y=num_of_doors, fill=num_of_doors))
+    + geom_bar()
+    + geom_text(
+        aes(label=after_stat(count)), stat="count", nudge_y=0.125, va="bottom")+theme(legend.position = "none")
+)+labs(x="",y="",title="Count of num_of_doors variable")+
+  
+( 
+  ggplot(df, aes(y=drive_wheels, fill=drive_wheels))
+    + geom_bar()
+    + geom_text(
+        aes(label=after_stat(count)), stat="count", nudge_y=0.125, va="bottom")+theme(legend.position = "none")
+)+labs(x="",y="",title="Count of drive_wheels variable")+
+  
+( 
+  ggplot(df, aes(y=engine_location, fill=engine_location))
+    + geom_bar()
+    + geom_text(
+        aes(label=after_stat(count)), stat="count", nudge_y=0.125, va="bottom")+theme(legend.position = "none")
+)+labs(x="",y="",title="Count of engine_location variable")  
+```
+
+-----------------------------------------------
+
+# *Numerical variables visualization*
+
+
+```{r echo=FALSE, fig.height=3, fig.width=10, message=FALSE, warning=FALSE}
+
+ggplot(numerical_data, aes(x = price,y=after_stat(density))) + geom_histogram(fill = 'blue', color = 'black',alpha=.5) + labs(x="",y="",title="Distribution of price variable")+geom_density(color = "green", linewidth = 1)+
+  
+ggplot(numerical_data, aes(x = width,y=after_stat(density)))+geom_histogram(fill = 'blue', color = 'black',alpha=.5) + labs(x="",y="",title="Distribution of width variable")+geom_density(color = "green", linewidth = 1)+
+
+ggplot(numerical_data, aes(x = height,y=after_stat(density)))+geom_histogram(fill = 'blue', color = 'black',alpha=.5) + labs(x="",y="",title="Distribution of height variable")+geom_density(color = "green", linewidth = 1)
+
+  
+```
+
+
+```{r echo=FALSE, fig.height=3, fig.width=10, message=FALSE, warning=FALSE}
+
+ggplot(numerical_data, aes(x = curb_weight,y=after_stat(density)))+geom_histogram(fill = 'blue', color = 'black',alpha=.5) + labs(x="",y="",title="Distribution of curb_weight variable")+geom_density(color = "green", linewidth = 1)+
+  
+ggplot(numerical_data, aes(x = engine_size,y=after_stat(density)))+geom_histogram(fill = 'blue', color = 'black',alpha=.5) + labs(x="",y="",title="Distribution of engine_size variable")+geom_density(color = "green", linewidth = 1)+
+  
+ggplot(numerical_data, aes(x = peak_rpm,y=after_stat(density)))+geom_histogram(fill = 'blue', color = 'black',alpha=.5) + labs(x="",y="",title="Distribution of peak_rpm variable")+geom_density(color = "green", linewidth = 1)
+    
+```
+
+
+
+
+```{r echo=FALSE, fig.height=3, fig.width=10, message=FALSE, warning=FALSE}
+
+ggplot(numerical_data, aes(x = length,y=after_stat(density)))+geom_histogram(fill = 'blue', color = 'black',alpha=.5) + labs(x="",y="",title="Distribution of length variable")+geom_density(color = "green", linewidth = 1)+
+  
+ggplot(numerical_data, aes(x = city_mpg,y=after_stat(density)))+geom_histogram(fill = 'blue', color = 'black',alpha=.5) + labs(x="",y="",title="Distribution of city_mpg variable")+geom_density(color = "green", linewidth = 1)+
+
+
+ggplot(numerical_data, aes(x = highway_mpg,y=after_stat(density)))+geom_histogram(fill = 'blue', color = 'black',alpha=.5) + labs(x="",y="",title="Distribution of highway_mpg variable")+geom_density(color = "green", linewidth = 1) 
+```
+
+-----------------------------------------------
+
+# *Visualizing The Relation between numerical variables :*
+
+
+```{r echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE}
+ggpairs(numerical_data)
+```
+
+-----------------------------------------------
+
+# *Visualizing The Relation between The Price variable and other numerical variables :*
+
+```{r fig.height=5, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+plot1 <- ggplot(df, aes(x = length, y = price)) + geom_point() + ggtitle("length vs price")+geom_smooth()
+plot2 <- ggplot(df, aes(x = width, y = price)) + geom_point() + ggtitle("width vs price")+geom_smooth()
+plot3 <- ggplot(df, aes(x = height, y = price)) + geom_point() + ggtitle("height vs price")+geom_smooth()
+plot4 <- ggplot(df, aes(x = curb_weight, y = price)) + geom_point() + ggtitle("curb_weight vs price")+geom_smooth()
+plot5 <- ggplot(df, aes(x = engine_size, y = price)) + geom_point() + ggtitle("engine_size vs price")+geom_smooth()
+plot6 <- ggplot(df, aes(x = peak_rpm, y = price)) + geom_point() + ggtitle("peak_rpm vs price")+geom_smooth()
+plot7 <- ggplot(df, aes(x = city_mpg, y = price)) + geom_point() + ggtitle("city_mpg vs price")+geom_smooth()
+plot8 <- ggplot(df, aes(x = highway_mpg, y = price)) + geom_point() + ggtitle("highway_mpg vs price")+geom_smooth()
+```
+
+
+```{r echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE}
+grid.arrange(plot1, plot2, plot3,plot4,plot5,plot6,plot7,plot8, ncol = 3)
+```
+
+> *We can see from the above charts that the relationship between the variables is monotonic (consistently increasing or decreasing but not necessarily linear)*
+
+-----------------------------------------------
+
+# *Visualizing The correlation between The numerical variables :*
+
+* *as the data is not normally distributed we will apply spearman methods*
+
+```{r echo=FALSE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+
+corrplot(cor(numerical_data,method = "spearman"),method="ellipse",order = "AOE",addCoef.col="black",
+         cex.lab=.5, cex.axis=.5)
+```
+
+
+-----------------------------------------------
+
+# *E. inferential analysis*
+
+
+## *E.1: Price by number of doors*
+
+* *E.1.1 : Price by number of doors-Basic description*
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df %>% group_by(num_of_doors) %>% summarise(
+  count = n(),
+  mean = mean(price),
+  sd = sd(price),
+  min = min(price),
+  Q1 = quantile(price, 0.25),
+  median = median(price),
+  Q3 = quantile(price, 0.75),
+  max = max(price)
+) %>% kable()
+
+```
+
+
+```{r echo=FALSE, fig.height=3, fig.width=10, message=FALSE, warning=FALSE}
+ggplot(df, aes(x = price,y=after_stat(density),fill=num_of_doors)) + geom_histogram( color = 'black',alpha=.3) + labs(x="",y="",title="Comparison of price variable Distribution bwteen num_of_doors ")+geom_density(alpha=.3)+facet_wrap(~num_of_doors)+theme(legend.position = "none")
+```
+
+
+
+* *E.1.2 : Applying wilcox.test (for variables with two groups) to find out if there are significant differences in Price Distribution among the Auto Mobiles based on number of doors groups :*
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+wilcox.test(price ~ num_of_doors, data = df)
+```
+> *As the The p-value is more than 0.05 , we will accept the null hypothesis,indicating that there are no significant differences in Price Distribution among the Auto Mobiles based on number of doors groups.*
+
+
+
+
+* *E.1.3 :Visualizing The Statistical test*
+
+* *we will use Mann-Whitney U Test -for features that have 2 categories : equivelent to wilcox.test() wilcox rank sum test with continuity correction,better than wilcox sighned rank exct test(that used when variables are paired)*
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+ggstatsplot_customized_theme<-theme(text = element_text(size = 20),
+                               plot.subtitle = element_text(size = 20),
+                               legend.title = element_text(size = 30),
+                               legend.text = element_text(size = 20))
+```
+
+
+
+```{r echo=FALSE, fig.height=3, fig.width=10, message=FALSE, warning=FALSE}
+df %>% ggbetweenstats(x=num_of_doors,y=price,type = "nonparamertic",conf.level = 0.95,
+                      centrality.label.args = list(size = 8, nudge_x = 0.6,
+                                                   segment.linetype = 4,min.segment.length = 0))+labs(x="",y="Price")+
+  ggstatsplot_customized_theme 
+  
+```
+
+
+
+## *E.2: Price by drive_wheels*
+
+* *E.2.1 : Price by drive_wheels-Basic description*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df %>% group_by(drive_wheels ) %>% summarise(
+  count = n(),
+  mean = mean(price),
+  sd = sd(price),
+  min = min(price),
+  Q1 = quantile(price, 0.25),
+  median = median(price),
+  Q3 = quantile(price, 0.75),
+  max = max(price)
+) %>% kable()
+
+```
+
+
+```{r echo=FALSE, fig.height=3, fig.width=10, message=FALSE, warning=FALSE}
+ggplot(df, aes(x = price,y=after_stat(density),fill=drive_wheels)) + geom_histogram( color = 'black',alpha=.3) + labs(x="",y="",title="Comparison of price variable Distribution bwteen drive_wheels ")+geom_density(alpha=.3)+facet_wrap(~drive_wheels)+theme(legend.position = "none")
+```
+
+
+* *E.2.2 :Applying kruskal.test (for variables with more than two groups) to find out if there are significant differences in Price Distribution among the Auto Mobiles based on drive wheels groups :*
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+kruskal.test(price ~ drive_wheels , data = df)
+```
+
+> *As the The p-value is less than 0.05 , we will reject the null hypothesis,indicating that there are significant differences in Price Distribution among the Auto Mobiles based on drive wheels groups.*
+
+
+* *E.2.3 :Visualizing The Statistical test*
+
+
+```{r echo=FALSE, fig.height=3, fig.width=10, message=FALSE, warning=FALSE}
+df %>% ggbetweenstats(x=drive_wheels,y=price,type = "nonparamertic",conf.level = 0.95,pairwise.display = "none",
+                      centrality.label.args = list(size = 8, nudge_x = 0.6,segment.linetype = 4,min.segment.length = 0),
+                      ggsignif.args = list(textsize = 5, tip_length = 0.01, na.rm = TRUE),
+                      p.adjust.method = "bonferroni")+
+  labs(x="",y="Price")+
+  ggstatsplot_customized_theme 
+```
+
+
+
+
+* *E.2.4: To find out this difference in details: we will apply pairwise.wilcox.test*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+pairwise.wilcox.test(df$price, df$drive_wheels, p.adjust.method = "bonferroni") 
+```
+> *As we can see there is significant difference in Price Distributions when we compare rwd group with the other two groups (4wd,fwd) ,as The p-value adjusted is less than 0.05, but the Price Distributions has no significant difference between groups (4wd,fwd) as The p-value adjusted is more than 0.05 *
+
+
+
+## *E.3: Price by body_style*
+
+* *E.3.1 : Price by body_style-Basic description*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df %>% group_by(body_style ) %>% summarise(
+  count = n(),
+  mean = mean(price),
+  sd = sd(price),
+  min = min(price),
+  Q1 = quantile(price, 0.25),
+  median = median(price),
+  Q3 = quantile(price, 0.75),
+  max = max(price)
+) %>% kable()
+
+```
+
+
+```{r echo=FALSE, fig.height=3, fig.width=10, message=FALSE, warning=FALSE}
+ggplot(df, aes(x = price,y=after_stat(density),fill=body_style)) + geom_histogram( color = 'black',alpha=.3) + labs(x="",y="",title="Comparison of price variable Distribution bwteen body_style ")+geom_density(alpha=.3)+facet_wrap(~body_style)+theme(legend.position = "none")
+```
+
+
+* *E.3.2 :Applying kruskal.test (for variables with more than two groups) to find out if there are significant differences in Price Distribution among the Auto Mobiles based on body_style groups :*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+kruskal.test(price ~ body_style , data = df)
+```
+
+
+> *As the The p-value is less than 0.05 , we will reject the null hypothesis,indicating that there are significant differences in Price among the Auto Mobiles based on body style groups.*
+
+
+* *E.3.3 :Visualizing The Statistical test*
+
+
+```{r echo=FALSE, fig.height=3, fig.width=10, message=FALSE, warning=FALSE}
+df %>% ggbetweenstats(x=body_style,y=price,type = "nonparamertic",conf.level = 0.95,pairwise.display = "none",
+                      centrality.label.args = list(size = 8, nudge_x = 0.6,segment.linetype = 4,min.segment.length = 0),
+                      ggsignif.args = list(textsize = 5, tip_length = 0.01, na.rm = TRUE),
+                      p.adjust.method = "bonferroni")+
+  labs(x="",y="Price")+
+  ggstatsplot_customized_theme 
+```
+
+
+
+
+* *E.3.4: To find out this difference in details: we will apply pairwise.wilcox.test*
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+pairwise.wilcox.test(df$price, df$body_style, p.adjust.method = "bonferroni")
+```
+
+> *As we can see there is significant difference in Price Distributions where the p-value adjusted is less than 0.05 when we compare :<br> 1.hatchback group with convertible group.<br> 2.sedan group with hatchback group.*
+
+
+
+
+## *E.4: Price by body_style*
+
+* *E.4.1 : Price by fuel_system-Basic description*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df %>% group_by(fuel_system ) %>% summarise(
+  count = n(),
+  mean = mean(price),
+  sd = sd(price),
+  min = min(price),
+  Q1 = quantile(price, 0.25),
+  median = median(price),
+  Q3 = quantile(price, 0.75),
+  max = max(price)
+) %>% kable()
+
+```
+
+
+
+
+```{r echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE}
+ggplot(df, aes(x = price,y=after_stat(density),fill=fuel_system)) + geom_histogram( color = 'black',alpha=.3) + labs(x="",y="",title="Comparison of price variable Distribution bwteen fuel_system ")+geom_density(alpha=.3)+facet_wrap(~fuel_system)+theme(legend.position = "none")
+```
+
+
+* *E.4.2 :Applying kruskal.test (for variables with more than two groups) to find out if there are significant differences in Price Distribution among the Auto Mobiles based on fuel_system groups :*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+kruskal.test(price ~ fuel_system , data = df)
+```
+> *As the The p-value is less than 0.05 , we will reject the null hypothesis,indicating that there are significant differences in Price Distribution among the Auto Mobiles based on fuel_system groups.*
+
+
+* *E.4.3 :Visualizing The Statistical test*
+
+
+```{r echo=FALSE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
+df %>% ggbetweenstats(x=fuel_system,y=price,type = "nonparamertic",conf.level = 0.95,pairwise.display = "none",
+                      centrality.label.args = list(size = 8, nudge_x = 0.6,segment.linetype = 4,min.segment.length = 0),
+                      ggsignif.args = list(textsize = 5, tip_length = 0.01, na.rm = TRUE),
+                      p.adjust.method = "bonferroni")+
+  labs(x="",y="Price")+
+  ggstatsplot_customized_theme 
+```
+
+
+
+
+* *E.4.4: To find out this difference in details: we will apply pairwise.wilcox.test*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+pairwise.wilcox.test(df$price, df$fuel_system, p.adjust.method = "bonferroni") 
+```
+
+> *As we can see there is significant difference in Price Distributions where the p-value adjusted is less than 0.05 when we compare :<br> 1. idi group with 1bbl and 2bbl groups.<br> 2. mpfi group with 1bbl and 2bbl groups.<br> 3. spdi group with 2bbl group.*
+
+
+
+
+## *E.5: Price by num_of_cylinders*
+
+* *E.5.1 : Price by num_of_cylinders-Basic description*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df %>% group_by(num_of_cylinders ) %>% summarise(
+  count = n(),
+  mean = mean(price),
+  sd = sd(price),
+  min = min(price),
+  Q1 = quantile(price, 0.25),
+  median = median(price),
+  Q3 = quantile(price, 0.75),
+  max = max(price)
+) %>% kable()
+
+```
+
+
+
+
+```{r echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE}
+ggplot(df, aes(x = price,y=after_stat(density),fill=num_of_cylinders)) + geom_histogram( color = 'black',alpha=.3) + labs(x="",y="",title="Comparison of price variable Distribution bwteen num_of_cylinders ")+geom_density(alpha=.3)+facet_wrap(~num_of_cylinders)+theme(legend.position = "none")
+```
+
+
+* *E.5.2 :Applying kruskal.test (for variables with more than two groups) to find out if there are significant differences in Price Distribution among the Auto Mobiles based on fuel_system groups :*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+kruskal.test(price ~ num_of_cylinders , data = df)
+```
+
+> *As the The p-value is less than 0.05 , we will reject the null hypothesis,indicating that there are significant differences in Price Distribution among the Auto Mobiles based on num_of_cylinders groups.*
+
+
+* *E.5.3 :Visualizing The Statistical test*
+
+```{r echo=FALSE, fig.height=3, fig.width=10, message=FALSE, warning=FALSE}
+df %>% ggbetweenstats(x=num_of_cylinders,y=price,type = "nonparamertic",conf.level = 0.95,pairwise.display = "none",
+                      centrality.label.args = list(size = 8, nudge_x = 0.6,segment.linetype = 4,min.segment.length = 0),
+                      ggsignif.args = list(textsize = 5, tip_length = 0.01, na.rm = TRUE),
+                      p.adjust.method = "bonferroni")+
+  labs(x="",y="Price")+
+  ggstatsplot_customized_theme 
+```
+
+
+
+* *E.5.4: To find out this difference in details: we will apply pairwise.wilcox.test*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+pairwise.wilcox.test(df$price, df$num_of_cylinders, p.adjust.method = "bonferroni") 
+```
+
+> *As we can see there is significant difference in Price Distributions where the p-value adjusted is less than 0.05 when we compare :<br> 1. four group with five group.<br> 2. six group with four group.*
+
+> *We will exclude cylinders Three and Twelve as there are no enough number of samples*
+
+-----------------------------------------------
+
+# *Final Conclusions:*
+
+* *1. The number of doors (two doors vs. four doors) does not significantly affect the price distribution of the automobiles in the data set.*
+
+* *2. The type of drive wheels (e.g., front-wheel drive, rear-wheel drive, or four-wheel drive) significantly affects the price distribution of the automobiles in the data set especially between groups (4wd,fwd) .*
+
+* *3. The body style of automobiles (e.g., sedan, hatchback, SUV) significantly affects the price distribution of the automobiles in the data set especially between :<br> A. hatchback group with convertible group.<br>B. sedan group with hatchback group.*
+
+* *4. The type of fuel system in automobiles (e.g., fuel injection, carburetor) significantly affects the price distribution of the automobiles in the data set especially between :<br> A. idi group with 1bbl and 2bbl groups.<br> B. mpfi group with 1bbl and 2bbl groups.<br> C. spdi group with 2bbl group.*
+
+* *5. The number of cylinders in an automobile's engine significantly affects the price distribution of the automobiles in the data set especially between :<br> A. four group with five group.<br> B. six group with four group.*
