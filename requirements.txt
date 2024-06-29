@@ -1,0 +1,13 @@
+pandas
+numpy
+seaborn
+matplotlib
+scikit-learn
+xgboost
+tqdm
+ipykernel
+pyjanitor
+feature_engine
+
+
+#-e .

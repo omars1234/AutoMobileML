@@ -1,22 +1,25 @@
 ---
-title: "Auto Mobile price Analysis Project - EDA In Depth"
-author: 'author : Omar Soub'
-date: "date : 23-05/2024"
+title: " *Auto Mobile Price Analysis Project* "
+author: " *Author : Omar Soub* "
+date: " *Date : 23/05/2024* "
 output:
-  html_document:
+  cleanrmd::html_document_clean:
+    theme: water-dark # NULL
     toc: yes
-    toc_float:
+    toc_float: 
       collapsed: true
     
     
 ---
 
+-------------------------------------------------------------------------------
 
 
 # *Introduction* 
 
 * *On this chapter ,we will use R-Programming Language in order to conduct inferential analysis to analyse the data as much as we can to help decision making*
 
+* *Note : You can look directly into the project in Rpubs by visting 'http://rpubs.com/omars/1196926' or [click here](http://rpubs.com/omars/1196926)* 
 ----------------------------------------------
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
@@ -42,6 +45,7 @@ library(ISLR)
 library(repr)
 library(gtsummary)
 library(corrplot)
+library(DataExplorer)
 ```
 
 
@@ -57,6 +61,12 @@ df<-read.csv("C:/Users/Omar/Desktop/Omar_Files/Python_Analysis/AutoMobile_Data_A
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 df %>% head() %>% kable()
+```
+
+## *data set dimensions*
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+df %>% dim() 
 ```
 
 ----------------------------------------------
@@ -90,6 +100,11 @@ df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)],
 df %>% skim()
 ```
 
+
+```{r eval=FALSE, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+DataExplorer::plot_intro(df)
+```
+
 -----------------------------------------------
 
 ###  *Define categorical variables*  
@@ -121,8 +136,18 @@ numerical_data %>% colnames()
 
 -----------------------------------------------
 
-# *Categorical variables visualization*
 
+# *Categorical variables EDA*
+
+## *Categorical variables distribution*
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+categorical_data %>% summary() %>% kable()
+```
+
+
+## *Categorical variables Visualization*
 
 ```{r echo=FALSE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
 ( 
@@ -175,7 +200,16 @@ numerical_data %>% colnames()
 
 -----------------------------------------------
 
-# *Numerical variables visualization*
+# *Numerical variables EDA*
+
+## *Numerical variables distribution*
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+numerical_data %>% summary() %>% kable()
+```
+
+## *Numerical variables Visualization*
 
 
 ```{r echo=FALSE, fig.height=3, fig.width=10, message=FALSE, warning=FALSE}
@@ -213,18 +247,35 @@ ggplot(numerical_data, aes(x = city_mpg,y=after_stat(density)))+geom_histogram(f
 ggplot(numerical_data, aes(x = highway_mpg,y=after_stat(density)))+geom_histogram(fill = 'blue', color = 'black',alpha=.5) + labs(x="",y="",title="Distribution of highway_mpg variable")+geom_density(color = "green", linewidth = 1) 
 ```
 
+
+
 -----------------------------------------------
 
-# *Visualizing The Relation between numerical variables :*
+# *Visualizing The Relation between The numerical variables :*
 
 
 ```{r echo=FALSE, fig.height=7, fig.width=10, message=FALSE, warning=FALSE}
 ggpairs(numerical_data)
 ```
 
+```{r eval=FALSE, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+plot_correlation(numerical_data)
+
+```
+
+
 -----------------------------------------------
 
 # *Visualizing The Relation between The Price variable and other numerical variables :*
+
+```{r eval=FALSE, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
+DataExplorer::plot_scatterplot(numerical_data,by="price")
+```
+
+```{r eval=FALSE, include=FALSE}
+plot_boxplot(df, by = "num_of_doors")
+```
+
 
 ```{r fig.height=5, fig.width=10, message=FALSE, warning=FALSE, include=FALSE}
 plot1 <- ggplot(df, aes(x = length, y = price)) + geom_point() + ggtitle("length vs price")+geom_smooth()
@@ -246,9 +297,16 @@ grid.arrange(plot1, plot2, plot3,plot4,plot5,plot6,plot7,plot8, ncol = 3)
 
 -----------------------------------------------
 
-# *Visualizing The correlation between The numerical variables :*
+# *The correlation between The numerical variables :*
 
 * *as the data is not normally distributed we will apply spearman methods*
+
+```{r}
+cor(numerical_data,method = "spearman") %>% kable()
+```
+
+
+* *Visualizing The correlation*
 
 ```{r echo=FALSE, fig.height=5, fig.width=10, message=FALSE, warning=FALSE}
 
