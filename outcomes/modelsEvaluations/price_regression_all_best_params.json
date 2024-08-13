@@ -1,0 +1,26 @@
+{
+    "ADAboost_evaluation_preds": {
+        "RMSE": 3973.081
+    },
+    "GBOOST_evaluation_preds": {
+        "RMSE": 7525.868
+    },
+    "XGBRF_evaluation_preds": {
+        "RMSE": 4357.19
+    },
+    "RF_evaluation_preds": {
+        "RMSE": 7515.803
+    },
+    "rf_base_evaluation": {
+        "RMSE": 2930.234
+    },
+    "ADAboost_base_evaluation": {
+        "RMSE": 3005.45
+    },
+    "XGBRF_base_evaluation": {
+        "RMSE": 2821.177
+    },
+    "GBOOST_base_evaluation": {
+        "RMSE": 3052.225
+    }
+}

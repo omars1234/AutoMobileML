@@ -8,6 +8,7 @@ tqdm
 ipykernel
 pyjanitor
 feature_engine
+hyperopt
 
 
 #-e .
