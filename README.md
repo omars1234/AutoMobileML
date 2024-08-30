@@ -6,7 +6,7 @@
 ## *Overview*
 
 
-*In this Project ,we will use Python Language and find the best Machine Learning Models with hypert parameter tuning for regression problem*
+*In this Project ,we will use Python Language and find the best Machine Learning Model for regression problem*
 
 * *To predict the Auto Mobile Prices based on given features inputs Using Python*
 
