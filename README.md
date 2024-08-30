@@ -65,16 +65,21 @@ Automobile_data_Analysis/
 
 ├── outcomes/
 |   ├── bestModels
-|   ├── bestParams
+|   ├── CategoricalFeaturesGrapths
+|   ├── correlationGrapths
 |   ├── featuresImportanceGraphs
-|   ├── modelsEvaluations
 |   ├── modelsEvaluationsGraphs
+|   ├── NumericalFeaturesGrapths
+|   ├── NumericalFeaturesGrapths
+|   ├── pointsplotGrapths
+|   ├── PriceMeanByCategories
+|
 |
 ├── README.md
 ├── requiremnts.txt
 ```
 
-## *Models and Parameters used in hyper tuning*  
+## *Models used :*  
 
 ```bash
 models = {
@@ -82,67 +87,60 @@ models = {
                 "DecisionTreeRegressor": DecisionTreeRegressor(),
                 "XGBRFRegressor": XGBRFRegressor(),
                 "GradientBoostingRegressor":GradientBoostingRegressor(),
-                "AdaBoostRegressor": AdaBoostRegressor()
-}
+                "AdaBoostRegressor": AdaBoostRegressor(),
+                "KNeighborsRegressor":KNeighborsRegressor(),
+                "SVR":SVR(),
+                "ElasticNet":ElasticNet(),
+                "LinearRegression":LinearRegression()
 
-search_spaces ={        
-        "XGBRFRegressor":{
-            "learning_rate": hp.uniform("learning_rate",0.01,1.0),   
-            "max_depth": hp.choice("max_depth", [2, 4, 5, 6,7,8]),
-            "subsample": hp.uniform("subsample",0.5,1.0),
-            "n_estimators": hp.choice("n_estimators", [100, 200, 300, 400,500,600]),
-            'colsample_bytree': hp.uniform("colsample_bytree",0.5,1.0), 
-            'colsample_bynode': hp.uniform("colsample_bynode",0.5,1.0),
-            "reg_lambda": hp.quniform("reg_lambda",0,2,1),         
-            "reg_alpha": hp.quniform("reg_alpha",0,2,1),
-            "num_parallel_tree": hp.choice("num_parallel_tree", [100,110])
-            },                    
-        "GradientBoostingRegressor":{
-            "loss": hp.choice("loss",['squared_error', 'huber', 'absolute_error', 'quantile']),
-            "n_estimators": hp.choice("n_estimators", [100, 200, 300, 400,500,600]),
-            "max_depth": hp.choice("max_depth", [2, 4, 5, 6,7,8]),
-            "max_features": hp.choice("max_features",["sqrt", "log2"]),
-            "learning_rate": hp.uniform("learning_rate",0.01,1.0),
-            "subsample": hp.uniform("subsample",0.8,1.0),
-            "min_samples_split": hp.uniform("min_samples_split",0.8,1.0),
-            "min_samples_leaf": hp.uniform("min_samples_leaf",0.8,1.0),
-            "criterion": hp.choice("criterion",["squared_error", "friedman_mse"]) 
-            },
-        "RandomForestRegressor":{
-            "n_estimators": hp.choice("n_estimators", [100, 200, 300, 400,500,600]), 
-            "min_samples_split": hp.uniform("min_samples_split",0.8,1.0),
-            "min_samples_leaf": hp.uniform("min_samples_leaf",0.8,1.0),
-            "bootstrap": hp.choice("bootstrap",[True, False]),                                                                                                    
-            "max_features": hp.choice("max_features",["sqrt", "log2"]),                                    
-            "max_depth": hp.choice("max_depth", [2, 4, 5, 6,7,8]),
-            "criterion": hp.choice("criterion",["poisson", "squared_error", "friedman_mse","absolute_error"])                    
-            },
-        "AdaBoostRegressor":{
-            "n_estimators": hp.choice("n_estimators", [100, 200, 300, 400,500,600]),
-            "learning_rate": hp.uniform("learning_rate",0.01,1.0),
-            "loss": hp.choice("loss",["linear","square","exponential"])
-            },
-        "DecisionTreeRegressor": {
-                    "criterion": hp.choice("criterion",["poisson", "squared_error", "friedman_mse","absolute_error"]),
-                    'splitter': hp.choice("splitter",["best", "random"]),
-                    "max_depth": hp.choice("max_depth", [2, 4, 5, 6,7,8]),
-                    "min_samples_split": hp.uniform("min_samples_split",0.8,1.0),
-                    "min_samples_leaf": hp.uniform("min_samples_leaf",0.8,1.0),
-                    "max_features": hp.choice("max_features",["sqrt", "log2"])
-            }                    
 }
 ```
 
 ## *Results*
 
+### *Categorical and Numnerical features distribution :*
+
+*Categorical Features*             |  *Numnerical Features*
+:-------------------------:|:-------------------------:
+ ![Logo](outcomes\CategoricalFeaturesGrapths\plot_Categorical_Features.png)  |   ![Logo](outcomes\NumericalFeaturesGrapths\plot_Numerical_Features.png)
+
+### *Features Correlation :*
+![Logo](outcomes\correlationGrapths\plot_correlation_Features.png)
+
+### *scutter plot with price as target feature :*
+![Logo](outcomes\pointsplotGrapths\plot_pointsplot1_Features.png)
+![Logo](outcomes\pointsplotGrapths\plot_pointsplot2_Features.png)
+
+### *Price Mean BY Category :*
+
+*price_mean_by_aspiration*     |  *price_mean_by_engine_location*  |  *price_mean_by_fuel_type*
+:-------------------------:|:-------------------------:|:-------------------------:
+ ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_aspiration.png)  |   ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_engine_location.png)  | ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_fuel_type.png)
+
+
+*price_mean_by_num_of_doors*     |  *price_mean_by_num_of_cylinders*  |  *price_mean_by_drive_wheels*
+:-------------------------:|:-------------------------:|:-------------------------:
+ ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_num_of_doors.png)  |   ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_num_of_cylinders.png)  | ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_drive_wheels.png)
+
+*price_mean_by_body_style* | *price_mean_by_engine_type* |
+ :-------------------------:|:-------------------------:
+ ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_body_style.png) |  ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_engine_type.png) 
+
+*price_mean_by_fuel_system*
+ ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_fuel_system.png) 
+
+*price_mean_by_make*
+ ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_make.png) 
+
+
 ### *Price feature as Regression Target ML :*
 
-* *The best model was XGBRFRegressor() with the default parameters*
+* *The best model was RandomForestRegressor()*
 
 
-*model Evaluations Graph*             |  *Model Features Importance Graphs*
+*model Residual Graph*     |  *Model Features Importance Graphs*
 :-------------------------:|:-------------------------:
- ![Logo](outcomes/modelsEvaluationsGraphs/price_EvaluationsGraph.png)  |   ![Logo](outcomes/featuresImportanceGraphs/price_featureImportanc.png)
+ ![Logo](outcomes\modelsEvaluationsGraphs\plot_BestModel_Residual.png)  |   ![Logo](outcomes\featuresImportanceGraphs\price_featureImportanc.png)
 
  ----------------------------------------
 
