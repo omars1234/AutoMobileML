@@ -102,35 +102,35 @@ models = {
 
 *Categorical Features*             |  *Numnerical Features*
 :-------------------------:|:-------------------------:
- ![Logo](outcomes\CategoricalFeaturesGrapths\plot_Categorical_Features.png)  |   ![Logo](outcomes\NumericalFeaturesGrapths\plot_Numerical_Features.png)
+ ![Logo](outcomes/CategoricalFeaturesGrapths/plot_Categorical_Features.png)  |   ![Logo](outcomes/NumericalFeaturesGrapths/plot_Numerical_Features.png)
 
 ### *Features Correlation :*
-![Logo](outcomes\correlationGrapths\plot_correlation_Features.png)
+![Logo](outcomes/correlationGrapths/plot_correlation_Features.png)
 
 ### *scutter plot with price as target feature :*
-![Logo](outcomes\pointsplotGrapths\plot_pointsplot1_Features.png)
-![Logo](outcomes\pointsplotGrapths\plot_pointsplot2_Features.png)
+![Logo](outcomes/pointsplotGrapths/plot_pointsplot1_Features.png)
+![Logo](outcomes/pointsplotGrapths/plot_pointsplot2_Features.png)
 
 ### *Price Mean BY Category :*
 
 *price_mean_by_aspiration*     |  *price_mean_by_engine_location*  |  *price_mean_by_fuel_type*
 :-------------------------:|:-------------------------:|:-------------------------:
- ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_aspiration.png)  |   ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_engine_location.png)  | ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_fuel_type.png)
+ ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_aspiration.png)  |   ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_engine_location.png)  | ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_fuel_type.png)
 
 
 *price_mean_by_num_of_doors*     |  *price_mean_by_num_of_cylinders*  |  *price_mean_by_drive_wheels*
 :-------------------------:|:-------------------------:|:-------------------------:
- ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_num_of_doors.png)  |   ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_num_of_cylinders.png)  | ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_drive_wheels.png)
+ ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_num_of_doors.png)  |   ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_num_of_cylinders.png)  | ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_drive_wheels.png)
 
 *price_mean_by_body_style* | *price_mean_by_engine_type* |
  :-------------------------:|:-------------------------:
- ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_body_style.png) |  ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_engine_type.png) 
+ ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_body_style.png) |  ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_engine_type.png) 
 
 *price_mean_by_fuel_system*
- ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_fuel_system.png) 
+ ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_fuel_system.png) 
 
 *price_mean_by_make*
- ![Logo](outcomes\PriceMeanByCategories\plot_price_mean_by_make.png) 
+ ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_make.png) 
 
 
 ### *Price feature as Regression Target ML :*
@@ -140,7 +140,7 @@ models = {
 
 *model Residual Graph*     |  *Model Features Importance Graphs*
 :-------------------------:|:-------------------------:
- ![Logo](outcomes\modelsEvaluationsGraphs\plot_BestModel_Residual.png)  |   ![Logo](outcomes\featuresImportanceGraphs\price_featureImportanc.png)
+ ![Logo](outcomes/modelsEvaluationsGraphs/plot_BestModel_Residual.png)  |   ![Logo](outcomes/featuresImportanceGraphs/price_featureImportanc.png)
 
  ----------------------------------------
 
