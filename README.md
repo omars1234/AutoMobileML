@@ -84,16 +84,50 @@ Automobile_data_Analysis/
 ```bash
 models = {
                 "RandomForestRegressor": RandomForestRegressor(),
-                "DecisionTreeRegressor": DecisionTreeRegressor(),
                 "XGBRFRegressor": XGBRFRegressor(),
                 "GradientBoostingRegressor":GradientBoostingRegressor(),
-                "AdaBoostRegressor": AdaBoostRegressor(),
-                "KNeighborsRegressor":KNeighborsRegressor(),
-                "SVR":SVR(),
-                "ElasticNet":ElasticNet(),
-                "LinearRegression":LinearRegression()
+                "AdaBoostRegressor": AdaBoostRegressor()
+        }
 
-}
+```
+## *Models parameters used for hyperopt :*  
+
+```bash
+search_spaces ={        
+                "XGBRFRegressor":{
+                    "learning_rate": hp.uniform("learning_rate",0.01,1.0),  
+                    "max_depth": hp.choice("max_depth", [None,2, 4, 5, 6,7,8]),
+                    "subsample": hp.uniform("subsample",0.5,1.0),
+                    "n_estimators": hp.choice("n_estimators", [100, 200, 300, 400,500,600])
+                    },
+                            
+                "GradientBoostingRegressor":{
+                    "n_estimators": hp.choice("n_estimators", [100, 200, 300, 400,500,600]),
+                    "max_depth": hp.choice("max_depth", [2, 4, 5, 6,7,8]),
+                    "max_features": hp.choice("max_features",["sqrt", "log2"]),
+                    "learning_rate": hp.uniform("learning_rate",0.01,1.0),
+                    "subsample": hp.uniform("subsample",0.8,1.0),
+                    "min_samples_split": hp.uniform("min_samples_split",0.8,1.0),
+                    "min_samples_leaf": hp.uniform("min_samples_leaf",0.8,1.0),
+                    "criterion": hp.choice("criterion",["squared_error", "friedman_mse"])
+                    },
+                "RandomForestRegressor":{
+                    "n_estimators": hp.choice("n_estimators", [100, 200, 300, 400,500,600]), 
+                    "min_samples_split": hp.uniform("min_samples_split",0.8,1.0),
+                    "min_samples_leaf": hp.uniform("min_samples_leaf",0.8,1.0),
+                    "bootstrap": hp.choice("bootstrap",[True, False]),                                                                                                    
+                    "max_features": hp.choice("max_features",["sqrt", "log2"]),                                    
+                    "max_depth": hp.choice("max_depth", [2, 4, 5, 6,7,8]),
+                    "criterion": hp.choice("criterion",["poisson", "squared_error", "friedman_mse","absolute_error"]),
+                    "max_samples": hp.uniform("max_samples", 0.5, 1.0)                  
+                    },
+
+                "AdaBoostRegressor":{
+                    "n_estimators": hp.choice("n_estimators", [100, 200, 300, 400,500,600]),
+                    "learning_rate": hp.uniform("learning_rate",0.05,1.0)
+                    }
+                }
+
 ```
 
 ## *Results*
