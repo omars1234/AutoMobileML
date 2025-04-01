@@ -145,6 +145,11 @@ search_spaces ={
 ![Logo](outcomes/pointsplotGrapths/plot_pointsplot1_Features.png)
 ![Logo](outcomes/pointsplotGrapths/plot_pointsplot2_Features.png)
 
+### *price as target feature- Distribution plot  :*
+![Logo](outcomes\Price.png)
+
+==> *The price feature is not normally distributed*
+
 ### *Price Mean BY Category :*
 
 *price_mean_by_aspiration*     |  *price_mean_by_engine_location*  |  *price_mean_by_fuel_type*
