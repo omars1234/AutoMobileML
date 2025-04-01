@@ -65,6 +65,8 @@ Automobile_data_Analysis/
 
 ├── outcomes/
 |   ├── bestModels
+|   ├── bestParameters
+|   ├── bestParamsevaluation
 |   ├── CategoricalFeaturesGrapths
 |   ├── correlationGrapths
 |   ├── featuresImportanceGraphs
