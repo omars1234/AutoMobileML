@@ -155,34 +155,31 @@ search_spaces ={
 ### *Price BY Category :*
 *price_by_aspiration*  
 
-![Logo](outcomes/PriceByCategories/plot_price_by_aspiration.png)
-
-*price_by_engine_location*
-
-![Logo](outcomes/PriceByCategories/plot_price_by_engine_location.png)
-
-*price_by_fuel_type*
-
-![Logo](outcomes/PriceByCategories/plot_price_by_fuel_type.png)
+*price_by_aspiration* | *price_by_engine_location* 
+:-------------------------:|:-------------------------:
+![Logo](outcomes/PriceByCategories/plot_price_by_aspiration.png) |![Logo](outcomes/PriceByCategories/plot_price_by_engine_location.png)
 
 
-*price_by_aspiration*     |  *price_by_engine_location*  |  *price_by_fuel_type*
-:-------------------------:|:-------------------------:|:-------------------------:
- ![Logo](outcomes/PriceByCategories/plot_price_by_aspiration.png)  |   ![Logo](outcomes/PriceByCategories/plot_price_by_engine_location.png)  | ![Logo](outcomes/PriceByCategories/plot_price_by_fuel_type.png)
+*price_by_fuel_type* | *price_by_num_of_doors*
+:-------------------------:|:-------------------------:
+![Logo](outcomes/PriceByCategories/plot_price_by_fuel_type.png) |![Logo](outcomes/PriceByCategories/plot_price_by_num_of_doors.png)
 
 
-*price_by_num_of_doors*     |  *price_by_num_of_cylinders*  |  *price_by_drive_wheels*
-:-------------------------:|:-------------------------:|:-------------------------:
- ![Logo](outcomes/PriceByCategories/plot_price_by_num_of_doors.png)  |   ![Logo](outcomes/PriceByCategories/plot_price_by_num_of_cylinders.png)  | ![Logo](outcomes/PriceByCategories/plot_price_by_drive_wheels.png)
+
+*price_by_num_of_cylinders*  |  *price_by_drive_wheels*
+:-------------------------:|:-------------------------:
+![Logo](outcomes/PriceByCategories/plot_price_by_num_of_cylinders.png)  | ![Logo](outcomes/PriceByCategories/plot_price_by_drive_wheels.png)
 
 *price_by_body_style* | *price_by_engine_type* |
  :-------------------------:|:-------------------------:
  ![Logo](outcomes/PriceByCategories/plot_price_by_body_style.png) |  ![Logo](outcomes/PriceByCategories/plot_price_by_engine_type.png) 
 
-*price_by_fuel_system*
+*price_by_fuel_system*|
+:-------------------------:
  ![Logo](outcomes/PriceByCategories/plot_price_by_fuel_system.png) 
 
-*price_by_make*
+*price_by_make*|
+:-------------------------:
  ![Logo](outcomes/PriceByCategories/plot_price_by_make.png) 
 
 
