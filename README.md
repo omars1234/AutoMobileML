@@ -146,7 +146,7 @@ search_spaces ={
 ![Logo](outcomes/pointsplotGrapths/plot_pointsplot2_Features.png)
 
 ### *price as target feature- Distribution plot  :*
-![Logo](outcomes\Price.png)
+![Logo](outcomes/Price.png)
 
 ==> *The price feature is not normally distributed*
 
