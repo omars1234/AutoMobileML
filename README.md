@@ -150,11 +150,13 @@ search_spaces ={
 
 ==> *The price feature is not normally distributed*
 
-### *Price Mean BY Category :*
 
-*price_mean_by_aspiration*     |  *price_mean_by_engine_location*  |  *price_mean_by_fuel_type*
+
+### *Price BY Category :*
+
+*price_by_aspiration*     |  *price_by_engine_location*  |  *price_by_fuel_type*
 :-------------------------:|:-------------------------:|:-------------------------:
- ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_aspiration.png)  |   ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_engine_location.png)  | ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_fuel_type.png)
+ ![Logo](outcomes/PriceByCategories/plot_price_by_aspiration.png)  |   ![Logo](outcomes/PriceByCategories/plot_price_by_engine_location.png)  | ![Logo](outcomes/PriceByCategories/plot_price_by_fuel_type.png)
 
 
 *price_mean_by_num_of_doors*     |  *price_mean_by_num_of_cylinders*  |  *price_mean_by_drive_wheels*
