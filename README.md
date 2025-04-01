@@ -153,6 +153,18 @@ search_spaces ={
 
 
 ### *Price BY Category :*
+*price_by_aspiration*  
+
+![Logo](outcomes/PriceByCategories/plot_price_by_aspiration.png)
+
+*price_by_engine_location*
+
+![Logo](outcomes/PriceByCategories/plot_price_by_engine_location.png)
+
+*price_by_fuel_type*
+
+![Logo](outcomes/PriceByCategories/plot_price_by_fuel_type.png)
+
 
 *price_by_aspiration*     |  *price_by_engine_location*  |  *price_by_fuel_type*
 :-------------------------:|:-------------------------:|:-------------------------:
