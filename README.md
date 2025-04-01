@@ -72,7 +72,7 @@ Automobile_data_Analysis/
 |   ├── NumericalFeaturesGrapths
 |   ├── NumericalFeaturesGrapths
 |   ├── pointsplotGrapths
-|   ├── PriceMeanByCategories
+|   ├── PriceByCategories
 |
 |
 ├── README.md

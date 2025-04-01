@@ -1,0 +1,32 @@
+{
+    "best_AdaBoostRegressor": {
+        "learning_rate": 0.1976858789766623,
+        "n_estimators": "3"
+    },
+    "best_GradientBoostingRegressor": {
+        "criterion": "friedman_mse",
+        "learning_rate": 0.511275401157656,
+        "max_depth": "1",
+        "max_features": "log2",
+        "min_samples_leaf": 0.8580709132715644,
+        "min_samples_split": 0.9482341188230903,
+        "n_estimators": "1",
+        "subsample": 0.834785252070391
+    },
+    "best_RandomForestRegressor": {
+        "bootstrap": "0",
+        "criterion": "2",
+        "max_depth": "5",
+        "max_features": "1",
+        "max_samples": 0.5067006866647106,
+        "min_samples_leaf": 0.9461566215908407,
+        "min_samples_split": 0.9863825440936758,
+        "n_estimators": "5"
+    },
+    "best_XGBRFRegressor": {
+        "learning_rate": 0.8961624903150527,
+        "max_depth": "6",
+        "n_estimators": "1",
+        "subsample": 0.9962555485801594
+    }
+}

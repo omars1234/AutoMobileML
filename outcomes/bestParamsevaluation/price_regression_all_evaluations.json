@@ -1,0 +1,6 @@
+{
+    "rf_base_evaluation": 3341.69831235998,
+    "XGBRF_evaluation_evaluation": 3775.1009833644807,
+    "GBOOST_base_evaluation": 8986.699631615704,
+    "ADAboost_evaluation_evaluation": 4244.834606599147
+}
