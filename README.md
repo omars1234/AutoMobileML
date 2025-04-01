@@ -171,19 +171,19 @@ search_spaces ={
  ![Logo](outcomes/PriceByCategories/plot_price_by_aspiration.png)  |   ![Logo](outcomes/PriceByCategories/plot_price_by_engine_location.png)  | ![Logo](outcomes/PriceByCategories/plot_price_by_fuel_type.png)
 
 
-*price_mean_by_num_of_doors*     |  *price_mean_by_num_of_cylinders*  |  *price_mean_by_drive_wheels*
+*price_by_num_of_doors*     |  *price_by_num_of_cylinders*  |  *price_by_drive_wheels*
 :-------------------------:|:-------------------------:|:-------------------------:
- ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_num_of_doors.png)  |   ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_num_of_cylinders.png)  | ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_drive_wheels.png)
+ ![Logo](outcomes/PriceByCategories/plot_price_by_num_of_doors.png)  |   ![Logo](outcomes/PriceByCategories/plot_price_by_num_of_cylinders.png)  | ![Logo](outcomes/PriceByCategories/plot_price_by_drive_wheels.png)
 
-*price_mean_by_body_style* | *price_mean_by_engine_type* |
+*price_by_body_style* | *price_by_engine_type* |
  :-------------------------:|:-------------------------:
- ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_body_style.png) |  ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_engine_type.png) 
+ ![Logo](outcomes/PriceByCategories/plot_price_by_body_style.png) |  ![Logo](outcomes/PriceByCategories/plot_price_by_engine_type.png) 
 
-*price_mean_by_fuel_system*
- ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_fuel_system.png) 
+*price_by_fuel_system*
+ ![Logo](outcomes/PriceByCategories/plot_price_by_fuel_system.png) 
 
-*price_mean_by_make*
- ![Logo](outcomes/PriceMeanByCategories/plot_price_mean_by_make.png) 
+*price_by_make*
+ ![Logo](outcomes/PriceByCategories/plot_price_by_make.png) 
 
 
 ### *Price feature as Regression Target ML :*
